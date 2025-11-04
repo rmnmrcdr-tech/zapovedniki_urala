@@ -42,7 +42,7 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         #map {
@@ -50,7 +50,26 @@
             width: 100%;
         }
 
-        /* Стили для кнопки опроса под картой */
+        /* Новая структура контента */
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        /* Стили для кнопки опроса ПОД картой */
+        .quiz-section-bottom {
+            width: 100%;
+            margin: 10px 0 30px 0;
+        }
+
         .quiz-card {
             background: linear-gradient(135deg, #2d5016 0%, #4a7c1f 100%);
             color: white;
@@ -58,12 +77,11 @@
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-            margin: 20px 0;
             border: 3px solid #3a6420;
         }
 
         .quiz-card-content {
-            max-width: 600px;
+            max-width: 100%;
             margin: 0 auto;
         }
 
@@ -128,9 +146,25 @@
             backdrop-filter: blur(5px);
         }
 
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .map-container {
+                height: 500px;
+            }
+        }
+
         @media (max-width: 768px) {
             .map-container {
                 height: 400px;
+            }
+            
+            .quiz-card {
+                padding: 20px;
             }
             
             .quiz-card-title {
@@ -149,6 +183,17 @@
             .quiz-feature {
                 font-size: 0.85em;
                 padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quiz-card-features {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .quiz-feature {
+                width: fit-content;
             }
         }
     </style>
@@ -186,42 +231,47 @@
         </div>
         
         <div class="content">
-            <div class="map-container">
-                <div id="loader" class="loader">
-                    <div class="loader-spinner"></div>
-                    <p>Загрузка карты заповедников...</p>
+            <!-- Основной контент: карта и список -->
+            <div class="main-content">
+                <div class="map-container">
+                    <div id="loader" class="loader">
+                        <div class="loader-spinner"></div>
+                        <p>Загрузка карты заповедников...</p>
+                    </div>
+                    <div id="map"></div>
                 </div>
-                <div id="map"></div>
+                
+                <div class="info-panel">
+                    <h2>🗺️ Список заповедников</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Поиск заповедника...">
+                    </div>
+                    <ul class="reserve-list" id="reserveList"></ul>
+                </div>
             </div>
             
-            <!-- Кнопка опроса под картой -->
-            <div class="quiz-card">
-                <div class="quiz-card-content">
-                    <h3 class="quiz-card-title">🎯 Проверь свои знания!</h3>
-                    <p class="quiz-card-description">
-                        Изучил карту заповедников? Пройди викторину и проверь, насколько хорошо ты запомнил информацию о природном наследии Урала!
-                    </p>
-                    
-                    <a href="https://forms.gle/WnDyJMHBddc3KpedA" target="_blank" class="quiz-card-button">
-                        <span class="quiz-card-icon">📝</span>
-                        Пройти викторину о заповедниках
-                    </a>
+            <!-- Кнопка опроса ПОД основным контентом -->
+            <div class="quiz-section-bottom">
+                <div class="quiz-card">
+                    <div class="quiz-card-content">
+                        <h3 class="quiz-card-title">🎯 Проверь свои знания!</h3>
+                        <p class="quiz-card-description">
+                            Изучил карту заповедников? Пройди викторину и проверь, насколько хорошо ты запомнил информацию о природном наследии Урала!
+                        </p>
+                        
+                        <a href="https://forms.gle/WnDyJMHBddc3KpedA" target="_blank" class="quiz-card-button">
+                            <span class="quiz-card-icon">📝</span>
+                            Пройти викторину о заповедниках
+                        </a>
 
-                    <div class="quiz-card-features">
-                        <span class="quiz-feature">⏱️ 5 минут</span>
-                        <span class="quiz-feature">❓ 7 вопросов</span>
-                        <span class="quiz-feature">🏆 Узнай результат</span>
-                        <span class="quiz-feature">🎓 Для 5-8 классов</span>
+                        <div class="quiz-card-features">
+                            <span class="quiz-feature">⏱️ 5 минут</span>
+                            <span class="quiz-feature">❓ 7 вопросов</span>
+                            <span class="quiz-feature">🏆 Узнай результат</span>
+                            <span class="quiz-feature">🎓 Для 5-8 классов</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="info-panel">
-                <h2>🗺️ Список заповедников</h2>
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Поиск заповедника...">
-                </div>
-                <ul class="reserve-list" id="reserveList"></ul>
             </div>
         </div>
         
