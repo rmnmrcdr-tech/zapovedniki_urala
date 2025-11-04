@@ -94,6 +94,48 @@
             font-size: 1.1em;
         }
 
+        /* Стили для лоадера */
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #2d5016;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .map-container {
+            position: relative;
+            height: 600px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
         @media (max-width: 768px) {
             .quiz-title {
                 font-size: 1.8em;
@@ -106,6 +148,10 @@
             
             .quiz-features {
                 grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                height: 400px;
             }
         }
     </style>
@@ -207,13 +253,266 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Ваш существующий JavaScript код остается без изменений
         document.addEventListener('DOMContentLoaded', function() {
             const reserves = [
-                // ... ваш существующий массив reserves ...
+                {
+                    id: 1, name: "Национальный парк «Таганай»", type: "Национальный парк",
+                    coords: [55.3167, 59.8500], image: "images/taganay.jpg",
+                    description: "Жемчужина Южного Урала, известная своими живописными хребтами. Расположен в Челябинской области. Площадь составляет 568 кв. км.",
+                    address: "г. Златоуст, Челябинская область", website: "https://park-taganay.ru/",
+                    area: "568 кв. км", year: "1991"
+                },
+                {
+                    id: 2, name: "Висимский заповедник", type: "Заповедник", 
+                    coords: [57.4000, 59.5333], image: "images/visimsky.jpg",
+                    description: "Расположен в Свердловской области, сохраняет природные комплексы среднеуральской тайги. Площадь - 335 кв. км.",
+                    address: "г. Кировград, Свердловская область", website: "http://visimskiy.ru/",
+                    area: "335 кв. км", year: "1971"
+                },
+                {
+                    id: 3, name: "Национальный парк «Башкирия»", type: "Национальный парк",
+                    coords: [53.0500, 56.5167], image: "images/bashkiriya.jpg",
+                    description: "Расположен на западных склонах Южного Урала в Башкортостане. Площадь - 920 кв. км. Знаменит карстовыми явлениями.",
+                    address: "п. Нугуш, Республика Башкортостан", website: "https://npbashkiria.ru/",
+                    area: "920 кв. км", year: "1986"
+                },
+                {
+                    id: 4, name: "Ильменский заповедник", type: "Заповедник",
+                    coords: [55.0333, 60.1667], image: "images/ilmensky.jpg",
+                    description: "Уникальный минералогический заповедник, музей под открытым небом. Находится в Челябинской области.",
+                    address: "г. Миасс, Челябинская область", website: "http://igz.ilmeny.ac.ru/",
+                    area: "303 кв. км", year: "1920"
+                },
+                {
+                    id: 5, name: "Национальный парк «Югыд ва»", type: "Национальный парк",
+                    coords: [62.2500, 59.0000], image: "images/yugyd-va.jpg",
+                    description: "Крупнейший национальный парк России, объект Всемирного наследия ЮНЕСКО. Расположен в Республике Коми.",
+                    address: "г. Вуктыл, Республика Коми", website: "http://ugyd-va.ru/",
+                    area: "18 917 кв. км", year: "1994"
+                },
+                {
+                    id: 6, name: "Природный парк «Бажовские места»", type: "Природный парк",
+                    coords: [56.4833, 60.7167], image: "images/bazhov.jpg",
+                    description: "Парк назван в честь уральского писателя Павла Бажова. Находится в Свердловской области.",
+                    address: "г. Сысерть, Свердловская область", website: "http://бажовские-места.рф/",
+                    area: "400 кв. км", year: "2007"
+                },
+                {
+                    id: 7, name: "Национальный парк «Зюраткуль»", type: "Национальный парк",
+                    coords: [54.9167, 59.2000], image: "images/zuratkul.jpg",
+                    description: "Знаменит высокогорным озером Зюраткуль и одноименным хребтом. Расположен в Челябинской области.",
+                    address: "г. Сатка, Челябинская область", website: "https://zuratkul.ru/",
+                    area: "882 кв. км", year: "1993"
+                },
+                {
+                    id: 8, name: "Заповедник Басеги", type: "Заповедник",
+                    coords: [58.8500, 58.0667], image: "images/basegi.jpg",
+                    description: "Расположен в Пермском крае, создан для охраны среднеуральской тайги.",
+                    address: "г. Гремячинск, Пермский край", website: "http://basegi.ru/",
+                    area: "379 кв. км", year: "1982"
+                },
+                {
+                    id: 9, name: "Заповедник «Шульган-Таш»", type: "Заповедник",
+                    coords: [53.0500, 57.0667], image: "images/shulgan-tash.jpg",
+                    description: "Известен Каповой пещерой с наскальными рисунками древнего человека. Находится в Башкортостане.",
+                    address: "д. Иргизлы, Республика Башкортостан", website: "http://shulgan-tash.ru/",
+                    area: "225 кв. км", year: "1986"
+                },
+                {
+                    id: 10, name: "Заповедник «Денежкин Камень»", type: "Заповедник",
+                    coords: [60.5000, 59.5333], image: "images/denezhkin.jpg",
+                    description: "Расположен на Северном Урале в Свердловской области.",
+                    address: "г. Североуральск, Свердловская область", website: "http://denkamen.ru/",
+                    area: "781 кв. км", year: "1946"
+                },
+                {
+                    id: 11, name: "Вишерский заповедник", type: "Заповедник",
+                    coords: [61.5000, 59.0000], image: "images/vishersky.jpg",
+                    description: "Один из крупнейших заповедников Европы, расположен в Пермском крае.",
+                    address: "г. Красновишерск, Пермский край", website: "http://vishersky.ru/",
+                    area: "2 412 кв. км", year: "1991"
+                },
+                {
+                    id: 12, name: "Восточно-Уральский заповедник", type: "Заповедник",
+                    coords: [55.7333, 60.9000], image: "images/east-ural.jpg",
+                    description: "Создан на территории, подвергшейся радиационному воздействию в результате аварии 1957 года.",
+                    address: "г. Озёрск, Челябинская область", website: "#",
+                    area: "166 кв. км", year: "1966"
+                },
+                {
+                    id: 13, name: "Южно-Уральский заповедник", type: "Заповедник",
+                    coords: [54.2833, 57.8333], image: "images/south-ural.jpg",
+                    description: "Крупнейший заповедник Южного Урала, расположен в Башкортостане и Челябинской области.",
+                    address: "п. Реветь, Республика Башкортостан", website: "http://south-ural-reserve.ru/",
+                    area: "2 528 кв. км", year: "1979"
+                },
+                {
+                    id: 14, name: "Природный парк «Оленьи ручьи»", type: "Природный парк",
+                    coords: [56.5167, 59.2500], image: "images/oleni-ruchi.jpg",
+                    description: "Популярный природный парк в Свердловской области, известный скалами, пещерами и наскальными рисунками.",
+                    address: "п. Бажуково, Свердловская область", website: "http://оленьи-ручьи.рф/",
+                    area: "127 кв. км", year: "1999"
+                }
             ];
 
-            // ... весь ваш существующий JavaScript код ...
+            // Функция для скрытия лоадера
+            function hideLoader() {
+                const loader = document.getElementById('loader');
+                if (loader) {
+                    loader.style.display = 'none';
+                }
+            }
+
+            // Функция для показа ошибки
+            function showError(message) {
+                const loader = document.getElementById('loader');
+                if (loader) {
+                    loader.innerHTML = `
+                        <div style="color: #e74c3c; font-size: 1.2em; margin-bottom: 10px;">❌</div>
+                        <p style="color: #e74c3c; margin-bottom: 15px;">${message}</p>
+                        <button onclick="location.reload()" style="background: #2d5016; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                            Перезагрузить страницу
+                        </button>
+                    `;
+                }
+            }
+
+            try {
+                // Инициализация карты
+                const map = L.map('map', { 
+                    zoomControl: false,
+                    renderer: L.canvas()
+                }).setView([58.5, 59.0], 5);
+                
+                L.control.zoom({ position: 'topright' }).addTo(map);
+
+                // Добавляем слой карты
+                const tileLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                    attribution: '',
+                    maxZoom: 17,
+                    errorTileUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                }).addTo(map);
+
+                // Обработчики событий загрузки карты
+                tileLayer.on('load', function() {
+                    console.log('Карта успешно загружена');
+                    hideLoader();
+                });
+
+                tileLayer.on('tileerror', function(e) {
+                    console.error('Ошибка загрузки тайла:', e);
+                    // Не скрываем лоадер при ошибках тайлов - они могут быть временными
+                });
+
+                // Переменные
+                const reserveList = document.getElementById('reserveList');
+                const searchInput = document.getElementById('searchInput');
+                let markers = [];
+                
+                // Функции
+                function createListItem(reserve) {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'reserve-item';
+                    listItem.dataset.id = reserve.id;
+                    listItem.innerHTML = `
+                        <div class="reserve-name">${reserve.name}</div>
+                        <div class="reserve-type">${reserve.type}</div>
+                        <div class="reserve-location">${reserve.address}</div>
+                    `;
+                    
+                    listItem.addEventListener('click', () => {
+                        activateReserve(reserve.id);
+                        const marker = markers.find(m => m.reserveId === reserve.id);
+                        if (marker) {
+                            map.setView(marker.getLatLng(), 9);
+                            marker.openPopup();
+                        }
+                    });
+                    
+                    return listItem;
+                }
+                
+                function activateReserve(reserveId) {
+                    document.querySelectorAll('.reserve-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    const activeItem = document.querySelector(`.reserve-item[data-id="${reserveId}"]`);
+                    if (activeItem) {
+                        activeItem.classList.add('active');
+                    }
+                }
+                
+                function createPopupContent(reserve) {
+                    return `
+                        <div class="popup-content">
+                            ${reserve.image ? 
+                                `<img src="${reserve.image}" alt="${reserve.name}" class="popup-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` : 
+                                ''
+                            }
+                            <div class="image-placeholder" style="${reserve.image ? 'display: none' : ''}">
+                                🏞️ ${reserve.name}
+                            </div>
+                            <h3>${reserve.name}</h3>
+                            <p><strong>Тип:</strong> ${reserve.type}</p>
+                            <p><strong>Площадь:</strong> ${reserve.area}</p>
+                            <p><strong>Год основания:</strong> ${reserve.year}</p>
+                            <p>${reserve.description}</p>
+                            <p><strong>Адрес:</strong> ${reserve.address}</p>
+                            ${reserve.website !== '#' ? 
+                                `<a href="${reserve.website}" target="_blank" class="website-link">🌐 Официальный сайт</a>` : 
+                                ''
+                            }
+                        </div>
+                    `;
+                }
+                
+                function getIconColor(type) {
+                    if (type.includes('Национальный парк')) return '#3388ff';
+                    if (type.includes('Заповедник')) return '#e74c3c';
+                    return '#2ecc71';
+                }
+                
+                // Инициализация маркеров
+                reserves.forEach(reserve => {
+                    if (reserveList) {
+                        reserveList.appendChild(createListItem(reserve));
+                    }
+                    
+                    const customIcon = L.divIcon({
+                        html: `<div style="background-color: ${getIconColor(reserve.type)}; width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 8px rgba(0,0,0,0.5);"></div>`,
+                        className: 'custom-marker',
+                        iconSize: [20, 20],
+                        iconAnchor: [10, 10]
+                    });
+                    
+                    const marker = L.marker(reserve.coords, { icon: customIcon })
+                        .addTo(map)
+                        .bindPopup(createPopupContent(reserve));
+                    
+                    marker.reserveId = reserve.id;
+                    markers.push(marker);
+                    
+                    marker.on('click', () => activateReserve(reserve.id));
+                });
+
+                // Поиск
+                if (searchInput) {
+                    searchInput.addEventListener('input', (e) => {
+                        const searchTerm = e.target.value.toLowerCase();
+                        document.querySelectorAll('.reserve-item').forEach(item => {
+                            const text = item.textContent.toLowerCase();
+                            item.style.display = text.includes(searchTerm) ? 'block' : 'none';
+                        });
+                    });
+                }
+
+                // Скрыть лоадер через 5 секунд на всякий случай
+                setTimeout(hideLoader, 5000);
+
+            } catch (error) {
+                console.error('Ошибка при инициализации карты:', error);
+                showError('Произошла ошибка при загрузке карты. Пожалуйста, проверьте подключение к интернету.');
+            }
         });
     </script>
 </body>
