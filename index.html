@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+Оптимизировано интегрируй в этот код <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -67,50 +67,113 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const reserves = [
-                { id: 1, name: "Национальный парк «Таганай»", type: "Национальный парк", coords: [55.3167, 59.8500], image: "images/taganay.jpg", description: "Жемчужина Южного Урала, известная своими живописными хребтами. Расположен в Челябинской области. Площадь составляет 568 кв. км.", address: "г. Златоуст, Челябинская область", website: "https://park-taganay.ru/", area: "568 кв. км", year: "1991" },
-                { id: 2, name: "Висимский заповедник", type: "Заповедник", coords: [57.4000, 59.5333], image: "images/visimsky.jpg", description: "Расположен в Свердловской области, сохраняет природные комплексы среднеуральской тайги. Площадь - 335 кв. км.", address: "г. Кировград, Свердловская область", website: "http://visimskiy.ru/", area: "335 кв. км", year: "1971" },
-                { id: 3, name: "Национальный парк «Башкирия»", type: "Национальный парк", coords: [53.0500, 56.5167], image: "images/bashkiriya.jpg", description: "Расположен на западных склонах Южного Урала в Башкортостане. Площадь - 920 кв. км. Знаменит карстовыми явлениями.", address: "п. Нугуш, Республика Башкортостан", website: "https://npbashkiria.ru/", area: "920 кв. км", year: "1986" },
-                { id: 4, name: "Ильменский заповедник", type: "Заповедник", coords: [55.0333, 60.1667], image: "images/ilmensky.jpg", description: "Уникальный минералогический заповедник, музей под открытым небом. Находится в Челябинской области.", address: "г. Миасс, Челябинская область", website: "http://igz.ilmeny.ac.ru/", area: "303 кв. км", year: "1920" },
-                { id: 5, name: "Национальный парк «Югыд ва»", type: "Национальный парк", coords: [62.2500, 59.0000], image: "images/yugyd-va.jpg", description: "Крупнейший национальный парк России, объект Всемирного наследия ЮНЕСКО. Расположен в Республике Коми.", address: "г. Вуктыл, Республика Коми", website: "http://ugyd-va.ru/", area: "18 917 кв. км", year: "1994" },
-                { id: 6, name: "Природный парк «Бажовские места»", type: "Природный парк", coords: [56.4833, 60.7167], image: "images/bazhov.jpg", description: "Парк назван в честь уральского писателя Павла Бажова. Находится в Свердловской области.", address: "г. Сысерть, Свердловская область", website: "http://бажовские-места.рф/", area: "400 кв. км", year: "2007" },
-                { id: 7, name: "Национальный парк «Зюраткуль»", type: "Национальный парк", coords: [54.9167, 59.2000], image: "images/zuratkul.jpg", description: "Знаменит высокогорным озером Зюраткуль и одноименным хребтом. Расположен в Челябинской области.", address: "г. Сатка, Челябинская область", website: "https://zuratkul.ru/", area: "882 кв. км", year: "1993" },
-                { id: 8, name: "Заповедник Басеги", type: "Заповедник", coords: [58.8500, 58.0667], image: "images/basegi.jpg", description: "Расположен в Пермском крае, создан для охраны среднеуральской тайги.", address: "г. Гремячинск, Пермский край", website: "http://basegi.ru/", area: "379 кв. км", year: "1982" },
-                { id: 9, name: "Заповедник «Шульган-Таш»", type: "Заповедник", coords: [53.0500, 57.0667], image: "images/shulgan-tash.jpg", description: "Известен Каповой пещерой с наскальными рисунками древнего человека. Находится в Башкортостане.", address: "д. Иргизлы, Республика Башкортостан", website: "http://shulgan-tash.ru/", area: "225 кв. км", year: "1986" },
-                { id: 10, name: "Заповедник «Денежкин Камень»", type: "Заповедник", coords: [60.5000, 59.5333], image: "images/denezhkin.jpg", description: "Расположен на Северном Урале в Свердловской области.", address: "г. Североуральск, Свердловская область", website: "http://denkamen.ru/", area: "781 кв. км", year: "1946" },
-                { id: 11, name: "Вишерский заповедник", type: "Заповедник", coords: [61.5000, 59.0000], image: "images/vishersky.jpg", description: "Один из крупнейших заповедников Европы, расположен в Пермском крае.", address: "г. Красновишерск, Пермский край", website: "http://vishersky.ru/", area: "2 412 кв. км", year: "1991" },
-                { id: 12, name: "Восточно-Уральский заповедник", type: "Заповедник", coords: [55.7333, 60.9000], image: "images/east-ural.jpg", description: "Создан на территории, подвергшейся радиационному воздействию в результате аварии 1957 года.", address: "г. Озёрск, Челябинская область", website: "#", area: "166 кв. км", year: "1966" },
-                { id: 13, name: "Южно-Уральский заповедник", type: "Заповедник", coords: [54.2833, 57.8333], image: "images/south-ural.jpg", description: "Крупнейший заповедник Южного Урала, расположен в Башкортостане и Челябинской области.", address: "п. Реветь, Республика Башкортостан", website: "http://south-ural-reserve.ru/", area: "2 528 кв. км", year: "1979" },
-                { id: 14, name: "Природный парк «Оленьи ручьи»", type: "Природный парк", coords: [56.5167, 59.2500], image: "images/oleni-ruchi.jpg", description: "Популярный природный парк в Свердловской области, известный скалами, пещерами и наскальными рисунками.", address: "п. Бажуково, Свердловская область", website: "http://оленьи-ручьи.рф/", area: "127 кв. км", year: "1999" }
+                {
+                    id: 1, name: "Национальный парк «Таганай»", type: "Национальный парк",
+                    coords: [55.3167, 59.8500], image: "images/taganay.jpg",
+                    description: "Жемчужина Южного Урала, известная своими живописными хребтами. Расположен в Челябинской области. Площадь составляет 568 кв. км.",
+                    address: "г. Златоуст, Челябинская область", website: "https://park-taganay.ru/",
+                    area: "568 кв. км", year: "1991"
+                },
+                {
+                    id: 2, name: "Висимский заповедник", type: "Заповедник", 
+                    coords: [57.4000, 59.5333], image: "images/visimsky.jpg",
+                    description: "Расположен в Свердловской области, сохраняет природные комплексы среднеуральской тайги. Площадь - 335 кв. км.",
+                    address: "г. Кировград, Свердловская область", website: "http://visimskiy.ru/",
+                    area: "335 кв. км", year: "1971"
+                },
+                {
+                    id: 3, name: "Национальный парк «Башкирия»", type: "Национальный парк",
+                    coords: [53.0500, 56.5167], image: "images/bashkiriya.jpg",
+                    description: "Расположен на западных склонах Южного Урала в Башкортостане. Площадь - 920 кв. км. Знаменит карстовыми явлениями.",
+                    address: "п. Нугуш, Республика Башкортостан", website: "https://npbashkiria.ru/",
+                    area: "920 кв. км", year: "1986"
+                },
+                {
+                    id: 4, name: "Ильменский заповедник", type: "Заповедник",
+                    coords: [55.0333, 60.1667], image: "images/ilmensky.jpg",
+                    description: "Уникальный минералогический заповедник, музей под открытым небом. Находится в Челябинской области.",
+                    address: "г. Миасс, Челябинская область", website: "http://igz.ilmeny.ac.ru/",
+                    area: "303 кв. км", year: "1920"
+                },
+                {
+                    id: 5, name: "Национальный парк «Югыд ва»", type: "Национальный парк",
+                    coords: [62.2500, 59.0000], image: "images/yugyd-va.jpg",
+                    description: "Крупнейший национальный парк России, объект Всемирного наследия ЮНЕСКО. Расположен в Республике Коми.",
+                    address: "г. Вуктыл, Республика Коми", website: "http://ugyd-va.ru/",
+                    area: "18 917 кв. км", year: "1994"
+                },
+                {
+                    id: 6, name: "Природный парк «Бажовские места»", type: "Природный парк",
+                    coords: [56.4833, 60.7167], image: "images/bazhov.jpg",
+                    description: "Парк назван в честь уральского писателя Павла Бажова. Находится в Свердловской области.",
+                    address: "г. Сысерть, Свердловская область", website: "http://бажовские-места.рф/",
+                    area: "400 кв. км", year: "2007"
+                },
+                {
+                    id: 7, name: "Национальный парк «Зюраткуль»", type: "Национальный парк",
+                    coords: [54.9167, 59.2000], image: "images/zuratkul.jpg",
+                    description: "Знаменит высокогорным озером Зюраткуль и одноименным хребтом. Расположен в Челябинской области.",
+                    address: "г. Сатка, Челябинская область", website: "https://zuratkul.ru/",
+                    area: "882 кв. км", year: "1993"
+                },
+                {
+                    id: 8, name: "Заповедник Басеги", type: "Заповедник",
+                    coords: [58.8500, 58.0667], image: "images/basegi.jpg",
+                    description: "Расположен в Пермском крае, создан для охраны среднеуральской тайги.",
+                    address: "г. Гремячинск, Пермский край", website: "http://basegi.ru/",
+                    area: "379 кв. км", year: "1982"
+                },
+                {
+                    id: 9, name: "Заповедник «Шульган-Таш»", type: "Заповедник",
+                    coords: [53.0500, 57.0667], image: "images/shulgan-tash.jpg",
+                    description: "Известен Каповой пещерой с наскальными рисунками древнего человека. Находится в Башкортостане.",
+                    address: "д. Иргизлы, Республика Башкортостан", website: "http://shulgan-tash.ru/",
+                    area: "225 кв. км", year: "1986"
+                },
+                {
+                    id: 10, name: "Заповедник «Денежкин Камень»", type: "Заповедник",
+                    coords: [60.5000, 59.5333], image: "images/denezhkin.jpg",
+                    description: "Расположен на Северном Урале в Свердловской области.",
+                    address: "г. Североуральск, Свердловская область", website: "http://denkamen.ru/",
+                    area: "781 кв. км", year: "1946"
+                },
+                {
+                    id: 11, name: "Вишерский заповедник", type: "Заповедник",
+                    coords: [61.5000, 59.0000], image: "images/vishersky.jpg",
+                    description: "Один из крупнейших заповедников Европы, расположен в Пермском крае.",
+                    address: "г. Красновишерск, Пермский край", website: "http://vishersky.ru/",
+                    area: "2 412 кв. км", year: "1991"
+                },
+                {
+                    id: 12, name: "Восточно-Уральский заповедник", type: "Заповедник",
+                    coords: [55.7333, 60.9000], image: "images/east-ural.jpg",
+                    description: "Создан на территории, подвергшейся радиационному воздействию в результате аварии 1957 года.",
+                    address: "г. Озёрск, Челябинская область", website: "#",
+                    area: "166 кв. км", year: "1966"
+                },
+                {
+                    id: 13, name: "Южно-Уральский заповедник", type: "Заповедник",
+                    coords: [54.2833, 57.8333], image: "images/south-ural.jpg",
+                    description: "Крупнейший заповедник Южного Урала, расположен в Башкортостане и Челябинской области.",
+                    address: "п. Реветь, Республика Башкортостан", website: "http://south-ural-reserve.ru/",
+                    area: "2 528 кв. км", year: "1979"
+                },
+                {
+                    id: 14, name: "Природный парк «Оленьи ручьи»", type: "Природный парк",
+                    coords: [56.5167, 59.2500], image: "images/oleni-ruchi.jpg",
+                    description: "Популярный природный парк в Свердловской области, известный скалами, пещерами и наскальными рисунками.",
+                    address: "п. Бажуково, Свердловская область", website: "http://оленьи-ручьи.рф/",
+                    area: "127 кв. км", year: "1999"
+                }
             ];
 
-            // ОПТИМИЗИРОВАННАЯ КАРТА С ОГРАНИЧЕНИЕМ УРАЛА
-            const uralBounds = L.latLngBounds(
-                L.latLng(51.0, 55.0),   // Юго-запад
-                L.latLng(65.0, 66.0)    // Северо-восток
-            );
-
-            const map = L.map('map', {
-                zoomControl: false,
-                minZoom: 5,
-                maxZoom: 15,
-                maxBounds: uralBounds,
-                maxBoundsViscosity: 0.9
-            }).setView([58.5, 59.0], 5);
-            
+            // Инициализация карты
+            const map = L.map('map', { zoomControl: false }).setView([58.5, 59.0], 5);
             L.control.zoom({ position: 'topright' }).addTo(map);
 
             L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-                attribution: '',
-                maxZoom: 17,
-                bounds: uralBounds
+                attribution: '', maxZoom: 17
             }).addTo(map);
-
-            // Автоматическое возвращение в границы
-            map.on('drag', function() {
-                if (!uralBounds.contains(map.getCenter())) {
-                    map.panInsideBounds(uralBounds, { animate: true });
-                }
-            });
 
             // Переменные
             const reserveList = document.getElementById('reserveList');
@@ -118,7 +181,7 @@
             let markers = [];
             
             // Функции
-            const createListItem = (reserve) => {
+            function createListItem(reserve) {
                 const listItem = document.createElement('li');
                 listItem.className = 'reserve-item';
                 listItem.dataset.id = reserve.id;
@@ -138,16 +201,16 @@
                 });
                 
                 return listItem;
-            };
+            }
             
-            const activateReserve = (reserveId) => {
+            function activateReserve(reserveId) {
                 document.querySelectorAll('.reserve-item').forEach(item => {
                     item.classList.remove('active');
                 });
-                document.querySelector(`.reserve-item[data-id="${reserveId}"]`)?.classList.add('active');
-            };
+                document.querySelector(`.reserve-item[data-id="${reserveId}"]`).classList.add('active');
+            }
             
-            const createPopupContent = (reserve) => {
+            function createPopupContent(reserve) {
                 return `
                     <div class="popup-content">
                         ${reserve.image ? 
@@ -169,13 +232,13 @@
                         }
                     </div>
                 `;
-            };
+            }
             
-            const getIconColor = (type) => {
+            function getIconColor(type) {
                 if (type.includes('Национальный парк')) return '#3388ff';
                 if (type.includes('Заповедник')) return '#e74c3c';
                 return '#2ecc71';
-            };
+            }
             
             // Инициализация
             reserves.forEach(reserve => {
