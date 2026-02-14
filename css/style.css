@@ -237,41 +237,8 @@ h1 {
     color: #888;
 }
 
-/* Loader */
-.loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    text-align: center;
-}
-
-.loader-spinner {
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #4CAF50;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 20px;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Quiz card (под картой) */
-.quiz-section-bottom {
-    width: 100%;
-    margin: 10px 0 30px 0;
-}
-
+/* Quiz card */
+.quiz-section-bottom { width: 100%; margin: 10px 0 30px 0; }
 .quiz-card {
     background: linear-gradient(135deg, #2d5016 0%, #4a7c1f 100%);
     color: white;
@@ -281,72 +248,17 @@ h1 {
     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     border: 3px solid #3a6420;
 }
-
-.quiz-card-content {
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-.quiz-card-title {
-    font-size: 1.5em;
-    margin-bottom: 12px;
-    color: #fff;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-}
-
-.quiz-card-description {
-    font-size: 1.1em;
-    margin-bottom: 20px;
-    line-height: 1.5;
-    opacity: 0.95;
-}
-
+.quiz-card-title { font-size: 1.5em; margin-bottom: 12px; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+.quiz-card-description { font-size: 1.1em; margin-bottom: 20px; opacity: 0.95; }
 .quiz-card-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: #ff6b35;
-    color: white;
-    padding: 14px 28px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-size: 1.2em;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
-    border: 2px solid transparent;
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #ff6b35; color: white; padding: 14px 28px;
+    border-radius: 50px; text-decoration: none; font-size: 1.2em; font-weight: bold;
+    transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
 }
-
-.quiz-card-button:hover {
-    background: #ff8533;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
-    border-color: #fff;
-}
-
-.quiz-card-button:active {
-    transform: translateY(0);
-}
-
-.quiz-card-icon {
-    font-size: 1.3em;
-}
-
-.quiz-card-features {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-}
-
-.quiz-feature {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.9em;
-    backdrop-filter: blur(5px);
-}
+.quiz-card-button:hover { background: #ff8533; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6); }
+.quiz-card-features { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+.quiz-feature { background: rgba(255, 255, 255, 0.15); padding: 8px 15px; border-radius: 20px; font-size: 0.9em; }
 
 /* Footer */
 footer {
@@ -360,122 +272,70 @@ footer {
     border-radius: 10px;
     backdrop-filter: blur(5px);
 }
-
-.school-info {
-    font-size: 0.8rem;
-    margin-top: 5px;
-    opacity: 0.7;
-}
+.school-info { font-size: 0.8rem; margin-top: 5px; opacity: 0.7; }
 
 /* Leaflet */
-.leaflet-control-attribution {
-    display: none !important;
-}
+.leaflet-control-attribution { display: none !important; }
+.leaflet-popup-content { border-radius: 12px; width: 420px !important; }
+.leaflet-popup-content-wrapper { border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
 
-.leaflet-popup-content {
-    border-radius: 12px;
-    width: 420px !important;
-}
-
-.leaflet-popup-content-wrapper {
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-/* Popup content */
-.popup-content {
-    max-height: 460px;
-    overflow-y: auto;
-    padding-right: 5px;
-}
-
-.popup-image {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    border: 2px solid #e8f5e9;
-}
-
+.popup-content { max-height: 460px; overflow-y: auto; padding-right: 5px; }
+.popup-image { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; border: 2px solid #e8f5e9; }
 .image-placeholder {
-    width: 100%;
-    height: 220px;
+    width: 100%; height: 220px;
     background: linear-gradient(45deg, #e8f5e9, #c8e6c9);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #2d5a2d;
-    font-weight: bold;
-    margin-bottom: 12px;
-    border: 2px dashed #4CAF50;
-    font-size: 1.1rem;
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    color: #2d5a2d; font-weight: bold; margin-bottom: 12px; border: 2px dashed #4CAF50; font-size: 1.1rem;
 }
-
-.popup-content h3 {
-    margin: 0 0 12px;
-    color: #2d5a2d;
-    border-bottom: 2px solid #e8f5e9;
-    padding-bottom: 8px;
-}
-
-.popup-content p {
-    margin: 8px 0;
-}
-
+.popup-content h3 { margin: 0 0 12px; color: #2d5a2d; border-bottom: 2px solid #e8f5e9; padding-bottom: 8px; }
+.popup-content p { margin: 8px 0; }
 .website-link {
-    color: #3388ff;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
+    color: #3388ff; text-decoration: none; font-weight: bold;
+    display: inline-block; padding: 8px 16px; background: #e8f5e9; border-radius: 6px;
+}
+
+/* ====== "Подробнее" (добавлено) ====== */
+.popup-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; align-items: center; }
+
+.more-btn {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 800;
     padding: 8px 16px;
-    background: #e8f5e9;
     border-radius: 6px;
-    transition: background-color 0.3s ease;
+    background: #2d5a2d;
+    color: #fff;
+    transition: transform 0.15s ease, opacity 0.15s ease;
 }
+.more-btn:hover { transform: translateY(-1px); opacity: 0.95; }
 
-.website-link:hover {
-    background: #d4edd4;
+.more-content {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #f3fbf3;
+    border: 1px solid #d6efd6;
+    display: none;
 }
-
-/* Скролл в попапе */
-.popup-content::-webkit-scrollbar {
-    width: 6px;
-}
-.popup-content::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 3px;
-}
-.popup-content::-webkit-scrollbar-thumb {
-    background: #4CAF50;
-    border-radius: 3px;
-}
+.more-content.is-open { display: block; }
+.more-list { margin: 8px 0 0 18px; }
+.more-note { margin-top: 10px; }
 
 /* Responsive */
 @media (max-width: 1024px) {
-    .main-content {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .map-container {
-        height: 520px;
-    }
-
-    .info-panel {
-        max-height: 520px;
-    }
+    .main-content { grid-template-columns: 1fr; gap: 20px; }
+    .map-container { height: 520px; }
+    .info-panel { max-height: 520px; }
 }
 
 @media (max-width: 768px) {
-    .map-container {
-        height: 420px;
-    }
+    /* Улучшаем мобильную версию, не ломая ПК */
+    .container { padding: 12px; }
+    .map-container { height: 55vh; min-height: 360px; }
+    .info-panel { max-height: none; }
 
-    .leaflet-popup-content {
-        width: 320px !important;
-    }
+    .leaflet-popup-content { width: min(92vw, 360px) !important; }
 
     .vk-button {
         position: static;
@@ -483,96 +343,9 @@ footer {
         width: fit-content;
         display: inline-flex;
     }
-
-    .quiz-card {
-        padding: 20px;
-    }
-
-    .quiz-card-title {
-        font-size: 1.3em;
-    }
-
-    .quiz-card-button {
-        font-size: 1.1em;
-        padding: 12px 24px;
-    }
-
-    .quiz-card-features {
-        gap: 10px;
-    }
-
-    .quiz-feature {
-        font-size: 0.85em;
-        padding: 6px 12px;
-    }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
-
-    .leaflet-popup-content {
-        width: 280px !important;
-    }
-
-    .quiz-card-features {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .quiz-feature {
-        width: fit-content;
-    }
-}
-
-/* ====== "Подробнее" в попапе (добавлено, остальной дизайн не трогал) ====== */
-.popup-actions{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:10px;
-    align-items:center;
-}
-
-.more-btn{
-    appearance:none;
-    border:none;
-    cursor:pointer;
-    font-weight:700;
-    padding:8px 16px;
-    border-radius:6px;
-    background:#2d5a2d;
-    color:#fff;
-    transition: transform 0.15s ease, opacity 0.15s ease;
-}
-
-.more-btn:hover{
-    transform: translateY(-1px);
-    opacity:0.95;
-}
-
-.more-btn:active{
-    transform: translateY(0);
-}
-
-.more-content{
-    margin-top:12px;
-    padding:12px;
-    border-radius:10px;
-    background:#f3fbf3;
-    border:1px solid #d6efd6;
-    display:none;
-}
-
-.more-content.is-open{
-    display:block;
-}
-
-.more-list{
-    margin:8px 0 0 18px;
-}
-
-.more-note{
-    margin-top:10px;
+    .map-container { height: 52vh; min-height: 320px; }
+    .leaflet-popup-content { width: 92vw !important; }
 }
